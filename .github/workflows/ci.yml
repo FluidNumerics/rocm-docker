@@ -1,0 +1,36 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    strategy:
+        fail-fast: false
+        matrix:
+          include:
+            - rocm_version: '5.6'
+              rocm_package_set: 'rocm-dev'
+              operating_system: 'centos8'
+
+            - rocm_version: '5.6'
+              rocm_package_set: 'rocm-dev'
+              operating_system: 'ubuntu2204'
+    steps:
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: false
+          tags: ${{matrix.operating_system}}_rocm${{matrix.rocm_version}}:latest
+          file: Dockerfile.${{matrix.operating_system}}
+          build-args: ROCM_VERSION=${{matrix.rocm_version}}, PACKAGE_SET=${{matrix.rocm_package_set}}

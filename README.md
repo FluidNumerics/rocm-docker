@@ -16,6 +16,19 @@ Each container recipe has the following build arguments
 
 * `PACKAGE_SET` - The set of ROCm packages to install. These refer to the packages that are managed by the operating system for ROCm. By default, this is set to `rocm-dev`. Couldn't find a single page with a complete list of ROCm packages available through package managers ? Don't worry, we couldn't either. Below, however, we've pulled a complete list for ROCm 5.6 . These packages may (or may not) be available with earlier (or later) versions of ROCm. In most cases, `rocm-dev` is available and will do just fine. Also, we don't recommend using ROCm version before 5.6, but alas, you may have your reasons.
 
+
+To build on CentOS 8
+
+```
+docker build . --build-args ROCM_VERSION=5.6 --build-args PACKAGE_SET=rocm-dev -f Dockerfile.centos8 -t rocm5.6_centos8:latest
+```
+
+To build on Ubuntu 22.04
+
+```
+docker build . --build-args ROCM_VERSION=5.6 --build-args PACKAGE_SET=rocm-dev -f Dockerfile.ubuntu2204 -t rocm5.6_ubuntu2204:latest
+```
+
 ## Getting the docker image size
 
 ```
