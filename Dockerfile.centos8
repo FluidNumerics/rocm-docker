@@ -1,0 +1,24 @@
+FROM centos:centos8 as bootstrap
+
+ARG ROCM_VERSION=5.6
+
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
+    sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* &&\
+    yum update -y
+
+# https://github.com/ROCm-Developer-Tools/HIP/issues/2330
+RUN dnf -y --nogpgcheck install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm &&\
+    dnf config-manager -y --set-enabled powertools
+
+# Install rocm
+RUN echo -e "[rocm] \n\
+name=rocm \n\
+baseurl=https://repo.radeon.com/rocm/rhel8/${ROCM_VERSION}/main \n\
+enabled=1 \n\
+priority=50 \n\
+gpgcheck=1 \n\
+gpgkey=https://repo.radeon.com/rocm/rocm.gpg.key" > /etc/yum.repos.d/rocm.repo &&\
+cat /etc/yum.repos.d/rocm.repo &&\
+yum clean all -y &&\
+yum update -y &&\
+yum install -y rocm-dev 
