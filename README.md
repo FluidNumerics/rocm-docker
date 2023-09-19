@@ -76,5 +76,5 @@ In case you need a quick reference list of packages, below is a list of packages
 * rocm-smi-lib - AMD System Management libraries
 * rocm-utils - Radeon Open Compute (ROCm) Runtime software stack
 * rocm-validation-suite - ROCm Validation Suite validates the AMD platform using ROCm Runtime - The ROCm Validation Suite is a system administrator and cluster manager's tool for detecting and troubleshooting common problems affecting AMD GPUs running in high performance computing environments, enabled using the ROCm software stack on a compatible platform.
-rocminfo - Radeon Open Compute (ROCm) Runtime rocminfo tool
-rocsolver-dev - AMD ROCm SOLVER library
+* rocminfo - Radeon Open Compute (ROCm) Runtime rocminfo tool
+* rocsolver-dev - AMD ROCm SOLVER library
