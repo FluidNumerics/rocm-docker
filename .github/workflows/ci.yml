@@ -33,4 +33,6 @@ jobs:
           push: false
           tags: ${{matrix.operating_system}}_rocm${{matrix.rocm_version}}:latest
           file: Dockerfile.${{matrix.operating_system}}
-          build-args: ROCM_VERSION=${{matrix.rocm_version}}, PACKAGE_SET=${{matrix.rocm_package_set}}
+          build-args: |
+            ROCM_VERSION: ${{matrix.rocm_version}}
+            PACKAGE_SET: ${{matrix.rocm_package_set}}
