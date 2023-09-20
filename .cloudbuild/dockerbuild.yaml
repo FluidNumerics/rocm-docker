@@ -1,0 +1,22 @@
+steps:
+- id: Build Docker Image
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build',
+         '--build-arg','ROCM_VERSION=${_ROCM_VERSION}',
+         '--build-arg','HIP_PLATFORM=${_PACKAGE_SET}',
+         '-f',
+         'Dockerfile.${_OPERATING_SYSTEM}',
+         '.',
+         '-t',
+         'us-docker.pkg.dev/fluidnumerics-rcc/gpu/${_OPERATING_SYSTEM}-${_PACKAGE_SET}-${_ROCM_VERSION}:latest']
+
+
+images:
+- 'us-docker.pkg.dev/fluidnumerics-rcc/gpu/${_OPERATING_SYSTEM}-${_PACKAGE_SET}-${_ROCM_VERSION}:latest'
+
+timeout: 3600s
+
+substitutions:
+  _ROCM_VERSION: '5.6'
+  _PACKAGE_SET: 'rocm-dev'
+  _OPERATING_SYSTEM: 'centos8'
