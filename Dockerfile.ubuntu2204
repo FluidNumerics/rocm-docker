@@ -1,6 +1,7 @@
 FROM ubuntu:22.04 as bootstrap
 
 ARG ROCM_VERSION=5.7
+ARG PACKAGE_SET="rocm-dev"
 
 ENV DEBIAN_FRONTEND=noninteractive   \
     LANGUAGE=en_US.UTF-8 \
@@ -29,4 +30,4 @@ RUN mkdir --parents --mode=0755 /etc/apt/keyrings &&\
     echo "Package: *\nPin: release o=repo.radeon.com\nPin-Priority: 600" | \
     tee /etc/apt/preferences.d/rocm-pin-600 && \
     apt-get -y update && \
-    apt-get -y install rocm-dev
+    apt-get -y install ${PACKAGE_SET}

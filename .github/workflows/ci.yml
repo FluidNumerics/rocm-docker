@@ -12,9 +12,37 @@ jobs:
         fail-fast: false
         matrix:
           include:
+            - rocm_version: '5.3'
+              rocm_package_set: 'rocm-dev'
+              operating_system: 'centos8'
+            
+            - rocm_version: '5.4'
+              rocm_package_set: 'rocm-dev'
+              operating_system: 'centos8'
+            
+            - rocm_version: '5.5'
+              rocm_package_set: 'rocm-dev'
+              operating_system: 'centos8'
+
             - rocm_version: '5.6'
               rocm_package_set: 'rocm-dev'
               operating_system: 'centos8'
+            
+            - rocm_version: '5.7'
+              rocm_package_set: 'rocm-dev'
+              operating_system: 'centos8'
+
+            - rocm_version: '5.3'
+              rocm_package_set: 'rocm-dev'
+              operating_system: 'ubuntu2204'
+            
+            - rocm_version: '5.4'
+              rocm_package_set: 'rocm-dev'
+              operating_system: 'ubuntu2204'
+
+            - rocm_version: '5.5'
+              rocm_package_set: 'rocm-dev'
+              operating_system: 'ubuntu2204'
 
             - rocm_version: '5.6'
               rocm_package_set: 'rocm-dev'

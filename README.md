@@ -37,10 +37,18 @@ docker inspect -f "{{ .Size }}" IMAGE
 
 | Operating System | ROCm Version | Package set  | Size      |
 | :--------------: | :----------: | :----------: |:--------: |
-|   ubuntu 22.04   | rocm 5.6     | rocm-dev     | 5.726 GB  |
-|     centos 8     | rocm 5.6     | rocm-dev     | 5.184 GB  |
+|   Ubuntu 22.04   | rocm 5.6     | rocm-dev     | 5.726 GB  |
+|     CentOS 8     | rocm 5.6     | rocm-dev     | 5.184 GB  |
 
+## ROCm versions
+Ok, we lied. Really it took a few minutes of thought to realize where you can find the available versions of ROCm, for each operating system. Essentially, you can peruse the indexes for the yum or apt repositories that are posted by ROCm. Sure would be nice though if this was just in documentation somewhere.
 
+To find the currently available versions of ROCm, see
+
+| Operating System | Index URL                           |
+| :--------------: | :---------------------------------: |
+| Ubuntu 22.04     | https://repo.radeon.com/rocm/apt/   |
+| CentOS 8         | https://repo.radeon.com/rocm/rhel8/ |
 ## ROCm Packages
 
 If you're interested in generating a package list for ROCm, you  can add the following line to your Docker recipe file
